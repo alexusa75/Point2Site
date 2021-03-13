@@ -27,8 +27,8 @@ $RM = (Get-InstalledModule -Name Az).Version
 
 If(!$RM){
     $IsAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")
-    Write-Host " It's required to install AzureRM module " -ForegroundColor Red
-    $textNoInstall = " You have to install AzureRM module, do you want me to do it for you "
+    Write-Host " It's required to install Az module " -ForegroundColor Red
+    $textNoInstall = " You have to install Az module, do you want me to do it for you "
     $NoAzureRM = [Microsoft.VisualBasic.Interaction]::MsgBox($textNoInstall,'YesNo,Question',"Use other credentials")
     Switch($NoAzureRM){
         Yes{
@@ -38,7 +38,7 @@ If(!$RM){
                 #Install-Module PowerShellGet -Force:$true
                 Install-Module -Name Az -Repository PSGallery -AllowClobber -Force:$true
             }
-            Write-Host "We've installed the AzureRM module successfully" -ForegroundColor Blue -BackgroundColor White
+            Write-Host "We've installed the Az module successfully" -ForegroundColor Blue -BackgroundColor White
          }
         No{
             Write-Host "Install the Module by yourself and after that run the script again " -ForegroundColor Yellow -BackgroundColor Red
@@ -230,7 +230,7 @@ Function connect{
         }
       }
     Catch{
-        Write-Host "We couldn't connect with the credentials provided " -ForegroundColor Red -BackgroundColor Yellow
+        Write-Host "We couldn't connect with the provided credentials" -ForegroundColor Red -BackgroundColor Yellow
         }
 }
 
